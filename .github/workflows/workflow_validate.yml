@@ -8,9 +8,4 @@ jobs:
   validate:
     name: 👻 Validation
     runs-on: ubuntu-latest
-    steps:
-      - name: ⤵️ Check out Repo
-        uses: "actions/checkout@v4"
-
-      - name: 🚀 Run Validation
-        uses: "./.github/workflows/validate.yml"
+    uses: "./.github/workflows/validate.yml"
