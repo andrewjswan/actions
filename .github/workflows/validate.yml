@@ -30,12 +30,23 @@ jobs:
 
   validate:
     name: 🧹 Validation
+    if: ${{ needs.changes.outputs.changes != '[]' }}
     needs:
       - changes
     strategy:
       matrix:
         action: ${{ fromJSON(needs.changes.outputs.changes) }}
-    uses: andrewjswan/actions/.github/workflows/validate_${{ matrix.action }}.yml@main
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Check out Repo
+        uses: "actions/checkout@v4"
+
+      - name: 🧹 Validate
+        uses: jenseng/dynamic-uses@v1
+        with:
+          uses: andrewjswan/actions/validation/${{ matrix.action }}@main
+          with: '{ "token": "${{ secrets.GITHUB_TOKEN }}" }'
 
   ci-status:
     name: 🎭 Status

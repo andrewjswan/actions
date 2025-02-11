@@ -1,0 +1,11 @@
+name: 🧹 Yaml Lint
+inputs:
+  token:
+    description: Github Token
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: 🚀 Run yamllint
+      run: yamllint --strict .
+      shell: bash

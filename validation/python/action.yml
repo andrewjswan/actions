@@ -1,0 +1,36 @@
+name: 🧹 Python Ruff
+inputs:
+  token:
+    description: Github Token
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+
+    - name: ⤵️ Check out requirements
+      uses: actions/checkout@v4
+      with:
+        repository: andrewjswan/actions
+        sparse-checkout: .github/requirements.txt
+        path: pip
+
+    - name: 📦 Install requirements
+      run: python3 -m pip install -r pip/.github/requirements.txt --no-deps
+      shell: bash
+
+    - name: ⚙️ Lint
+      run: python3 -m ruff check .
+      shell: bash
+
+    - name: 💅 Format
+      run: python3 -m ruff format . --check
+      shell: bash
+
+    - name: 💅 Format Diff
+      if: failure()
+      run: python3 -m ruff format . --check --diff
+      shell: bash
