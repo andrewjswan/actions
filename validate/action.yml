@@ -7,9 +7,9 @@ on:
 jobs:
   changes:
     name: 👀 Source / Changed
-    runs-on: ubuntu-latest
     outputs:
       changes: ${{ steps.changes.outputs.changes }}
+    runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Check out Repo
         uses: actions/checkout@v4
