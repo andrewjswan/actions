@@ -7,5 +7,4 @@ on:
 jobs:
   validate:
     name: 👻 Validation
-    runs-on: ubuntu-latest
     uses: "./.github/workflows/validate.yml"
