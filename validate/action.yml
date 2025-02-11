@@ -1,0 +1,57 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  changes:
+    name: 👀 Source / Changed
+    runs-on: ubuntu-latest
+    outputs:
+      changes: ${{ steps.changes.outputs.changes }}
+    steps:
+      - name: ⬇️ Check out Repo
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Check for changes
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            python:
+              - '**.py'
+              - 'requirements.txt'
+            yaml:
+              - '**.yaml'
+              - '**.yml'
+            cpp:
+              - '**.cpp'
+              - '**.h'
+
+  validate:
+    name: 🧹 Validation
+    needs:
+      - changes
+    strategy:
+      matrix:
+        action: ${{ fromJSON(needs.changes.outputs.changes) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jenseng/dynamic-uses@v1
+        with:
+          uses: andrewjswan/actions/validate/validate_${{ matrix.action }}.yml@main
+
+  ci-status:
+    name: 🎭 Status
+    runs-on: ubuntu-latest
+    needs:
+      - validate
+    if: always()
+    steps:
+      - name: 🎉 Success
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: ❌ Failure
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
