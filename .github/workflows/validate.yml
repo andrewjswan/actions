@@ -2,7 +2,6 @@ name: Validate
 
 on:
   workflow_call:
-  workflow_dispatch:
 
 jobs:
   changes:
@@ -40,7 +39,7 @@ jobs:
     steps:
       - uses: jenseng/dynamic-uses@v1
         with:
-          uses: andrewjswan/actions/validate/validate_${{ matrix.action }}.yml@main
+          uses: andrewjswan/actions/.github/workflows/validate_${{ matrix.action }}.yml@main
 
   ci-status:
     name: 🎭 Status
