@@ -13,4 +13,4 @@ jobs:
         uses: "actions/checkout@v4"
 
       - name: 🚀 Run Validation
-        uses: "./validate"
+        uses: "./validate/validate.yml"
