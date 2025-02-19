@@ -27,6 +27,9 @@ jobs:
             cpp:
               - '**.cpp'
               - '**.h'
+            configs:
+              - '**.xml'
+              - '**.json'
 
   validate:
     name: 🧹 Validation

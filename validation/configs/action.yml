@@ -1,0 +1,12 @@
+name: 🧹 Configs validate
+inputs:
+  token:
+    description: Github Token
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: 🚀 Run XML Validate
+      uses: kehoecj/validate-configs-action@v4
+      with:
+        exclude-file-types: "yaml,yml"
