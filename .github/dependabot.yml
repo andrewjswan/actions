@@ -1,8 +1,9 @@
 version: 2
 
 updates:
+  # Update Github Actions dependencies
   - package-ecosystem: "github-actions"
-    directory: "/"
+    directory: "*"
     schedule:
       interval: weekly
       day: monday
