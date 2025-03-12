@@ -2,6 +2,12 @@ name: Validate
 
 on:
   workflow_call:
+    inputs:
+      exclude:
+        description: "Exclude validation for..."
+        required: false
+        type: string
+        default: "[]"
 
 jobs:
   changes:
@@ -43,9 +49,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out Repo
+        if: ${{ !contains(fromJSON(inputs.exclude), matrix.action) }}
         uses: "actions/checkout@v4"
 
       - name: 🧹 Validate
+        if: ${{ !contains(fromJSON(inputs.exclude), matrix.action) }}
         uses: jenseng/dynamic-uses@v1
         with:
           uses: andrewjswan/actions/validation/${{ matrix.action }}@main
