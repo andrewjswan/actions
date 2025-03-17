@@ -1,5 +1,5 @@
 pip>=21.0,<25.1
 pre-commit>=3.7.1
-ruff==0.9.6
+ruff==0.11.0
 homeassistant==2025.2.4
 esphome==2025.2.2
