@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Check out Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: ⚙️ Check for changes
         uses: dorny/paths-filter@v3
@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: ⤵️ Check out Repo
         if: ${{ !contains(fromJSON(inputs.exclude), matrix.action) }}
-        uses: "actions/checkout@v4"
+        uses: "actions/checkout@v5"
 
       - name: 🧹 Validate
         if: ${{ !contains(fromJSON(inputs.exclude), matrix.action) }}
