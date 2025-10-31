@@ -22,7 +22,7 @@ jobs:
           python-version: 3.x        
       - name: 🚸 Run pre-commit-ci-lite
         if: ${{ always() }}
-        uses: pre-commit-ci/lite-action@v1
+        uses: pre-commit-ci/lite-action@v1.1.0
         with:
           msg: "Chore: Auto fixes by pre-commit hooks"
 
