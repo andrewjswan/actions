@@ -10,10 +10,28 @@ on:
         default: "[]"
 
 jobs:
+  pre-commit:
+    name: 🚸 Pre-commit
+    runs-on: ubuntu-Latest
+    steps:
+      - name: 🚚 Check out repository
+        uses: actions/checkout@v5
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x        
+      - name: 🚸 Run pre-commit-ci-lite
+        if: ${{ always() }}
+        uses: pre-commit-ci/lite-action@v1
+        with:
+          msg: "Chore: Auto fixes by pre-commit hooks"
+
   changes:
     name: 👀 Source / Changed
     outputs:
       changes: ${{ steps.changes.outputs.changes }}
+    needs:
+      - pre-commit
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Check out Repo
