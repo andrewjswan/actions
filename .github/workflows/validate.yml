@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: 3.x
+      - name: ℹ️ Run pre-commit
+        uses: pre-commit/action@v3.0.1
       - name: 🚸 Run pre-commit-ci-lite
         if: ${{ always() }}
         uses: pre-commit-ci/lite-action@v1.1.0
