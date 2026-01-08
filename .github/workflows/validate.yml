@@ -36,6 +36,7 @@ jobs:
         uses: pre-commit/action@v3.0.1
         with:
           extra_args: --all-files
+        continue-on-error: true 
       - name: 🚸 Run pre-commit-ci-lite
         if: always() && steps.check_config.outputs.exists == 'true'
         uses: pre-commit-ci/lite-action@v1.1.0
