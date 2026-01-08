@@ -12,7 +12,7 @@ on:
 jobs:
   pre-commit:
     name: 🚸 Pre-commit
-    runs-on: ubuntu-Latest
+    runs-on: ubuntu-latest
     steps:
       - name: 🚚 Check out repository
         uses: actions/checkout@v6
