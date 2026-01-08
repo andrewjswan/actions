@@ -13,15 +13,31 @@ jobs:
   pre-commit:
     name: 🚸 Pre-commit
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
       - name: 🚚 Check out repository
         uses: actions/checkout@v6
+      - name: 🔍 Check if pre-commit Сonfig exists
+        id: check_config
+        run: |
+          if [ -f .pre-commit-config.yaml ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
       - name: 🐍 Set up Python
+        if: steps.check_config.outputs.exists == 'true'
         uses: actions/setup-python@v6
         with:
           python-version: 3.x
+      - name: 🛠️ Run pre-commit
+        if: steps.check_config.outputs.exists == 'true'
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: --all-files
       - name: 🚸 Run pre-commit-ci-lite
-        if: ${{ always() }}
+        if: always() && steps.check_config.outputs.exists == 'true'
         uses: pre-commit-ci/lite-action@v1.1.0
         with:
           msg: "Chore: Auto fixes by pre-commit hooks"
