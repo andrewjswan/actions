@@ -32,7 +32,7 @@ jobs:
         if: steps.check_config.outputs.exists == 'true'
         uses: actions/setup-python@v6
         with:
-          python-version: 3.x
+          python-version: 3.12
       - name: 🛠️ Run pre-commit
         if: steps.check_config.outputs.exists == 'true'
         uses: pre-commit/action@v3.0.1
