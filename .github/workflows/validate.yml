@@ -18,7 +18,7 @@ jobs:
       - name: 🚚 Check out repository
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
       - name: 🔍 Check if pre-commit Сonfig exists
         id: check_config
         run: |
@@ -38,7 +38,7 @@ jobs:
         uses: pre-commit/action@v3.0.1
         with:
           extra_args: --all-files
-        continue-on-error: true 
+        continue-on-error: true
       - name: 🚸 Run pre-commit-ci-lite
         if: always() && steps.check_config.outputs.exists == 'true'
         uses: pre-commit-ci/lite-action@v1.1.0
