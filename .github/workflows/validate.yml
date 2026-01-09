@@ -40,6 +40,7 @@ jobs:
         uses: pre-commit-ci/lite-action@v1.1.0
         with:
           msg: "Chore: Auto fixes by pre-commit hooks"
+          args: --all-files
 
   changes:
     name: 👀 Source / Changed
