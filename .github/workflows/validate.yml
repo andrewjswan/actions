@@ -45,6 +45,9 @@ jobs:
         with:
           commit_message: "Chore: Auto fixes by pre-commit hooks"
           branch: ${{ github.event.pull_request.head.ref }}
+          create_branch: false
+          skip_checkout: true
+          skip_fetch: true
 
   changes:
     name: 👀 Source / Changed
