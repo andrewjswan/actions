@@ -44,6 +44,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Chore: Auto fixes by pre-commit hooks"
+          branch: ${{ github.event.pull_request.head.ref }}
 
   changes:
     name: 👀 Source / Changed
