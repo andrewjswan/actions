@@ -33,17 +33,17 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: 3.12
-      - name: 🛠️ Run pre-commit
+      - name: 🛠️ Run pre-commit and Auto-fix
         if: steps.check_config.outputs.exists == 'true'
         uses: pre-commit/action@v3.0.1
         with:
           extra_args: --all-files
         continue-on-error: true
-      - name: 🚸 Run pre-commit-ci-lite
-        if: steps.check_config.outputs.exists == 'true'
-        uses: pre-commit-ci/lite-action@v1.1.0
+      - name: 🚸 Push fixes to PR
+        if: always() && steps.check_config.outputs.exists == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          msg: "Chore: Auto fixes by pre-commit hooks"
+          commit_message: "Chore: Auto fixes by pre-commit hooks"
 
   changes:
     name: 👀 Source / Changed
