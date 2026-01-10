@@ -48,6 +48,7 @@ jobs:
           create_branch: false
           skip_checkout: true
           skip_fetch: true
+          push_options: '--force'
 
   changes:
     name: 👀 Source / Changed
