@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: 🚚 Check out repository
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref || github.ref }}
       - name: 🔍 Check if pre-commit Сonfig exists
         id: check_config
         run: |
