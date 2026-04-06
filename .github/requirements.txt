@@ -2,4 +2,4 @@ pip>=21.0,<26.1
 pre-commit>=3.7.1
 ruff==0.15.9
 homeassistant==2026.3.4
-esphome==2026.3.1
+esphome==2026.3.2
