@@ -18,7 +18,7 @@ jobs:
       contents: write
     steps:
       - name: 🚚 Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Check out Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: ⚙️ Check for changes
         uses: dorny/paths-filter@v4
@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: ⤵️ Check out Repo
         if: ${{ !contains(fromJSON(inputs.exclude), matrix.action) }}
-        uses: "actions/checkout@v6"
+        uses: "actions/checkout@v7"
 
       - name: 🧹 Validate
         if: ${{ !contains(fromJSON(inputs.exclude), matrix.action) }}
