@@ -1,4 +1,4 @@
-pip>=26.2.2,<26.3
+pip>=26.3,<26.4
 pre-commit>=4.7.0
 ruff==0.17.3
 homeassistant==2026.11.0
